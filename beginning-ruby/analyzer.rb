@@ -44,6 +44,12 @@ paragraph_count = text.split(/\n\n/).length
 # Sentence count
 sentence_count = text.split(/\.|\?|!/).length
 
+# Interesting words
+stopwords = %w{the a by on for of are with just but and to the my I has some in}
+all_words = text.scan(/\w+/)
+good_words = all_words.reject{ |word| stopwords.include?(word) }
+good_percentage = ((good_words.length.to_f/all_words.length.to_f) * 100).to_i
+
 # Output results
 puts "#{line_count} lines via File.open"
 puts "#{line_count} lines via File.readlines"
@@ -61,3 +67,4 @@ puts "#{sentence_count/paragraph_count} sentences per paragraph (avg)"
 puts "#{word_count/sentence_count} words per sentence (avg)"
 puts "#{word_count/sentence_count} words per sentence (avg)"
 
+puts "#{good_percentage}% of words are non-fluff"
