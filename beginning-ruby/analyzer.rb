@@ -10,12 +10,12 @@
 # Count lines
 text = ''
 line_count = 0
-File.open("text.txt").each do |line|
+File.open(ARGV.first).each do |line|
     line_count += 1
     text << line
 end
 
-lines = File.readlines("text.txt")
+lines = File.readlines(ARGV.first)
 line_count = lines.size
 text = lines.join
 
@@ -50,6 +50,12 @@ all_words = text.scan(/\w+/)
 good_words = all_words.reject{ |word| stopwords.include?(word) }
 good_percentage = ((good_words.length.to_f/all_words.length.to_f) * 100).to_i
 
+sentences = text.gsub(/\s+/,' ').strip.split(/\.|\?|!/)
+sentences_sorted = sentences.sort_by{ |sentence| sentence.length }
+one_third = sentences_sorted.length/3
+ideal_sentences = sentences_sorted.slice(one_third, one_third + 1)
+ideal_sentences = ideal_sentences.select{ |sentence| sentence =~/is|are/ }
+
 # Output results
 puts "#{line_count} lines via File.open"
 puts "#{line_count} lines via File.readlines"
@@ -68,3 +74,5 @@ puts "#{word_count/sentence_count} words per sentence (avg)"
 puts "#{word_count/sentence_count} words per sentence (avg)"
 
 puts "#{good_percentage}% of words are non-fluff"
+puts "Summary:\n\n" + ideal_sentences.join(".")
+puts " -- End of analysis --"
