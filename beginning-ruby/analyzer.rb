@@ -76,3 +76,17 @@ puts "#{word_count/sentence_count} words per sentence (avg)"
 puts "#{good_percentage}% of words are non-fluff"
 puts "Summary:\n\n" + ideal_sentences.join(".")
 puts " -- End of analysis --"
+
+# Testing class method and variable
+class Square
+  def initialize
+    if defined?(@@number_of_squares)
+      @@number_of_squares += 1
+    else
+      @@number_of_squares = 1
+    end
+  end
+  def self.count
+    @@number_of_squares
+  end
+end
