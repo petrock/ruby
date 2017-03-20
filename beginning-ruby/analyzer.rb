@@ -90,3 +90,5 @@ class Square
     @@number_of_squares
   end
 end
+
+a = Square.new
