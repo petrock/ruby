@@ -3,7 +3,7 @@ module BookKeeping
 end
 class Gigasecond
   GIGASECOND = 1e9
-  def self.from(startMoment)
-    startMoment + GIGASECOND
+  def self.from(moment)
+    moment + GIGASECOND
   end
 end
