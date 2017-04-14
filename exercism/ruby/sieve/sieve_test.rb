@@ -8,7 +8,7 @@ require_relative 'sieve'
 
 class SieveTest < Minitest::Test
   def test_no_primes_under_two
-    # skip
+    skip
     expected = []
     assert_equal expected, Sieve.new(1).primes
   end
@@ -66,7 +66,7 @@ class SieveTest < Minitest::Test
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
 
   def test_bookkeeping
-    skip
+    # skip
     assert_equal 1, BookKeeping::VERSION
   end
 end
